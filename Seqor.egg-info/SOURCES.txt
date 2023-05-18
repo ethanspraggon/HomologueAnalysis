@@ -1,0 +1,7 @@
+setup.py
+Seqor.egg-info/PKG-INFO
+Seqor.egg-info/SOURCES.txt
+Seqor.egg-info/dependency_links.txt
+Seqor.egg-info/entry_points.txt
+Seqor.egg-info/requires.txt
+Seqor.egg-info/top_level.txt

@@ -1,0 +1,8 @@
+[console_scripts]
+alignment_tools = Seqor.seqor_utils:alignment_tools
+cutor = Seqor.Cutor.cutor:cutor
+ensembl_coevolution = ensembl:ensembl_coevolution
+fetch_sequences = Seqor.NCBI.ncbi_protein_query:main
+pfam_coevolution = Seqor.Pfam.pfam:main
+uniprot_coevolution = Seqor.Uniprot.uniprot:coevolution_wrapper
+uniprot_sequences = Seqor.Uniprot.uniprot:main
