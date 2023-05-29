@@ -35,6 +35,8 @@ setup(
     package_data={name: ["Metadata/Uniprot/*"]},
     entry_points={
         "console_scripts": [
+
+            #"find_homologues = ensembl:homologues"
             "alignment_tools = Seqor.seqor_utils:alignment_tools",
             "cutor = Seqor.Cutor.cutor:cutor",
             "ensembl_coevolution = ensembl:ensembl_coevolution",
