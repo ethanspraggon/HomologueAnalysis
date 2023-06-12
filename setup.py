@@ -17,7 +17,7 @@ except ImportError:
 ###################################################################################################
 from datetime import datetime
 
-name = "Seqor"
+name = "GenomicHomologues"
 now = datetime.now()
 year = now.strftime("%Y")
 month = now.strftime("%m")
@@ -36,14 +36,7 @@ setup(
     entry_points={
         "console_scripts": [
 
-            #"find_homologues = ensembl:homologues"
-            "alignment_tools = Seqor.seqor_utils:alignment_tools",
-            "cutor = Seqor.Cutor.cutor:cutor",
-            "ensembl_coevolution = ensembl:ensembl_coevolution",
-            "uniprot_coevolution = Seqor.Uniprot.uniprot:coevolution_wrapper",
-            "pfam_coevolution = Seqor.Pfam.pfam:main",
-            "fetch_sequences = Seqor.NCBI.ncbi_protein_query:main",
-            "uniprot_sequences = Seqor.Uniprot.uniprot:main",
+            "find_homologues = HomologueAnalysis.ensembl:homologues"
         ]
     },
     # url='http://www.python.org',
