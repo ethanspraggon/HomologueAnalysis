@@ -139,7 +139,7 @@ if __name__ == "__main__":
     
 
 
-    indexes, names = zip(*list(df['symbol'].items())[:5])
+    indexes, names = zip(*list(df['symbol'].items())[:20])
 
     #get all names that aren't in the cached dictionary
 
@@ -169,6 +169,8 @@ if __name__ == "__main__":
     #simliarity between dog and human for example, show information how networks compare
 
     #plot_heatmap(animal_genes_df)
-    sns.heatmap(animal_genes_df)
+
+    #red to blue
+    sns.heatmap(animal_genes_df, cmap=sns.color_palette("viridis", as_cmap=True))
 
     plt.show()
