@@ -10,6 +10,8 @@ import pymysql
 from Bio import SeqIO
 from multiprocessing import Pool, Process
 import json
+import pickle as pkl
+import functools
 
 import pandas as pd
 import numpy as np
@@ -27,103 +29,44 @@ from config import cache
 animal_perc_id_dict = {}
 
 
+def find_homologues(gene_name, id_cut):
+    """retrieves homologues from a gene name
+    
+    Calls the homologues function, querying the ensembl database 
 
-def find_homologues(gene_name):
-    seq_rec, animal_species, query_name = homologues(gene_name, idcut=0.0)
+    args:
+        gene_name: queries the homologues across different animal species for that gene_name
+        id_cut: the cutoff for the percentage identity required between animals
+
+    return:
+        gene_name
+        animal_species: the animal species that were returned as homologous
+        seq_rec: The sequence record containing information about the sequence and percentages
+    
+    """
+    seq_rec, animal_species, query_name = homologues(gene_name, idcut=id_cut)
     #animal_perc_id_dict[gene_name] = animal_species
 
     return gene_name, animal_species, seq_rec
 
 def generate_percent_matrix(test):
+    """Creates a matrix with animals as rows and genes and columns with percentage identity data
+
+    Utilizes the pool feature to query homologues and store them in a dictionary
+
+    args:
+        test: An iterable
+    
+    """
 
     #exception,
     pool = Pool()
-    results = pool.map(find_homologues, test)
+    results = pool.map(functools.partial(find_homologues, id_cut = 0.0), test)
 
-    
     print("results", results)
     #print("matrix", animal_perc_id_dict)
     return results
 
-#def plot_heatmap(matrix):
-
-    #plt.style.use("seaborn")
-
-    
-
-    #plt.title( "Heatmap Using Seaborn Method")
-
-
-
-"""animal_perc_id_dict = {}  
-for index, value in df['symbol'].items():
-    #print("index", index, "value:" ,value)
-    #print(type(value))
-    #continue
-
-
-    #query_list = [value]
-    seq_rec, animal_species, query_name = homologues(gene = value, idcut=0.0)
-    #print("seq_req", type(seq_rec))
-
-    print(len(animal_species.keys()))
-    #loop through the sequence records, output description, scrape the percent?
-
-    #print("desc", type(seq_rec[0].description))
-
-    #print("animal_species", animal_species) 
-    #print("query_name", query_name)
-
-    #create a dictionary with a list of animal species for each gene correlated
-    animal_perc_id_dict[value] = animal_species
-
-
-
-    #percent_matrix_dict[value] = 
-
-    break
-
-
-
-
-  #df.at[index, 'Unique Species Names'] = animal_species
-
-  #df.at[index, 'Sequence Count'] = len(seq_rec)
-
-  
-
-
-animal_genes_df = pd.DataFrame(animal_perc_id_dict)
-
-print(animal_genes_df)
-  
-
-#percent_matrix_df = pd.DataFrame(columns=[df['symbol']], index=)
-
-
-
-
-#animal_dict = {gene:animal_species for idx, gene in enumerate(df["symbol"])}
-
-  
-print(animal_genes_df.idxmin())
-
-"""
-
-"""pool = Pool(5)
-
-def PrintNames(name):
-  print(name)
-  return True
-
-def func(idx):
-  return idx
-
-test = range(0, df["symbol"].shape[0])
-results = pool.map(func, test)
-print(results)
-
-    """
 
 if __name__ == "__main__":
     f = open('data.json')
@@ -143,9 +86,11 @@ if __name__ == "__main__":
 
     #get all names that aren't in the cached dictionary
 
+    if 
     names = list(names)
     s = set(list(animal_perc_id_dict.keys()))
     new_names = [name for name in names if name not in s]
+
 
     results = generate_percent_matrix(names)
 
@@ -170,7 +115,5 @@ if __name__ == "__main__":
 
     #plot_heatmap(animal_genes_df)
 
-    #red to blue
-    sns.heatmap(animal_genes_df, cmap=sns.color_palette("viridis", as_cmap=True))
 
-    plt.show()
+    animal_genes_df.to_pickle("./animal_gene_matrix.pkl")

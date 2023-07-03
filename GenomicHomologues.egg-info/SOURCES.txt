@@ -10,7 +10,7 @@ HomologueAnalysis/__init__.py
 HomologueAnalysis/config.py
 HomologueAnalysis/ensembl.py
 HomologueAnalysis/ensemble_query.py
-HomologueAnalysis/generatetree.py
 HomologueAnalysis/hugo_info_request.py
 HomologueAnalysis/retrieve_gene_list.py
+HomologueAnalysis/vizpack.py
 PhylogenicTree/__init__.py
