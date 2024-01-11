@@ -36,8 +36,8 @@
 .Trashes
 ehthumbs.db
 Thumbs.db
-Seqor.egg-info
+Seqor.egg-info/
 data.json
-GenomicHomologues.egg-info
-dist
-build
+GenomicHomologues.egg-info/
+dist/
+build/
