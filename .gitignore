@@ -41,3 +41,4 @@ data.json
 GenomicHomologues.egg-info/
 dist/
 build/
+.vscode/
